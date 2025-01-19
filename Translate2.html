@@ -1,0 +1,264 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> English Afaan Oromo Dictionary</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+ /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 20px 20px;
+        }
+
+        .toolbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .toolbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Intro Section */
+        .intro {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(to right, #4CAF50, #009688);
+            color: white;
+        }
+
+        .intro h1 {
+            font-size: 3em;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            padding: 5px;
+            background: #f9f9f9;
+        }
+        .lang-switch {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-switch:hover {
+            background: #0056b3;
+        }
+        .search-bar {
+            flex: 1;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            outline: none;
+            border-radius: 25px;
+            margin: 0 10px;
+        }
+        .mic-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #007BFF;
+        }
+        .mic-button:hover {
+            color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: left;
+        }
+    footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;}
+
+  </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="logo" style="font-size:25px;"> Home</div>
+        <nav>
+            <a href="Translateabout.html">About</a>
+        </nav>
+    </div>
+  <!-- Intro Section -->
+    <div id="intro" class="intro">
+    <h1 style="font-size:35px">English Afaan Oromo Dictionary</h1>
+ <p> Hiika Afaan Oromo Irra Gara Afaan Englifa Fi Hiika Afaan Oromo Irra Gara Afaan Englifa</p>
+ </div>
+  <div class="container">
+        <h1>Search In Here.👇</h1>
+        <div class="search-container">
+            <button class="lang-switch" onclick="toggleLanguage()">Oromoo</button>
+            <input 
+                type="text" 
+                id="searchBar" 
+                class="search-bar" 
+                placeholder="Search in English..."
+                oninput="searchWord()">
+            <button class="mic-button" onclick="startSpeechRecognition()">🎤</button>
+        </div>
+        <div id="output" class="output">Start searching to see results here.</div>
+    </div>
+          <footer>
+        <p>&copy; 2025 All Right Reserved </p>
+    </footer>  
+ <script>
+        // Sample dictionary data
+        const dictionary = {
+    English: {
+            add:"Ida'i, ida'uu",
+             ago:"anumma, Dura",
+            a: "qube jalqaba",
+             as: "Akka", 
+             aim: "akeeka,galii,kayyoo",
+             air: "qileensa,hafuura",
+             all: "hunda,hunduma", 
+             and: "fi", 
+             ant: "goonda,jaama,mixii", 
+             any: "Eenyuyu,kamiyyuu,Tokkolle",
+             arc: "golboo",
+             arm:"irree",
+             art: "fakkii,artii,",
+             ass: "harre,boroo",
+             ask: "gaafi,gaafilee",
+             axe: "qottoo",
+             area: "nannoo,bakka",
+             army: "raayya,loltu",
+             able: "danda'a, danda'uu",
+             ache: "abha,waransa",
+             aunt: "adadaa, obboletti hadha",
+             axes: "siqqitoo",
+             axis: "siqqe",
+             aids: "edsii",
+             aid: "gargarsa,gargaruu",
+             amen: "fudhachu" ,
+             anti: "farra,fallaa" ,
+             anus: "futee",
+             arrow: "qarra,dhipoo",
+             again: "dabalata,ammas",
+             agree: "waligaluu,wali galee",
+             anger: "arii,hamaa",
+             ahead: "jalqaba,dursa",
+             agate: "balbala,karra",
+             aware: "argamu,argmati",
+             award: "wancha,badhasa",
+             alarm: "sa'ati,damaqsitu",
+             angry: "arii,aari",
+             abuse: "jonja'uu",
+             avoid: "dhorku,didu",
+             awake: "damaquu, ifaa ",
+             angle: "ergama",
+             alter: "jijiruu,jijjiruu",
+             album: "albami",
+             apply: "galme,galma'uu",
+             agent: "daldalaa,bakka bu'aa",
+             alien: "eliyen,umama adda",
+             adopt: "diqalaa",
+             argue: "morkii, kirkirii",
+             aside: "cina,bukee",
+             asian: "eshiya, ardi",
+             april: "mudde,ji'aa",
+             awful: "kosii,jibisisa"
+             
+             
+            },
+            Oromoo: {
+                nagaa: "peace,safe,Greeting",
+                jaalala: "Yeroo namni dhugaa namatti beekkama.",
+                ulfina: "Kabaja fi ulfina qabu.",
+                beekumsaa: "Ogeessummaan hojii beekamaa."
+            }
+        };
+    let currentLanguage = "English";
+        // Toggle language
+        function toggleLanguage() {
+            const langButton = document.querySelector(".lang-switch");
+            const searchBar = document.getElementById("searchBar");
+            if (currentLanguage === "English") {
+                currentLanguage = "Oromoo";
+                langButton.textContent = "English";
+                searchBar.placeholder = "Search in Afaan Oromoo...";
+            } else {
+                currentLanguage = "English";
+                langButton.textContent = "Oromoo";
+                searchBar.placeholder = "Search in English...";
+            }
+        }
+
+        // Search for the word
+        function searchWord() {
+            const query = document.getElementById("searchBar").value.toLowerCase();
+            const output = document.getElementById("output");
+
+            if (query === "") {
+                output.textContent = "Start searching to see results here.";
+                return;
+            }
+
+            const meaning = dictionary[currentLanguage][query];
+            if (meaning) {
+                output.textContent = `"${query}" means: ${meaning}`;
+            } else {
+                output.textContent = `Sorry, the word "${query}" is not found in the ${currentLanguage} dictionary.`;
+            }
+        }
+
+        // Speech recognition (Web Speech API)
+        function startSpeechRecognition() {
+            if (!("webkitSpeechRecognition" in window)) {
+                alert("Speech recognition is not supported in your browser.");
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = currentLanguage === "English" ? "en-US" : "om-ET";
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript.toLowerCase();
+                document.getElementById("searchBar").value = transcript;
+                searchWord(); // Automatically search the word
+            };
+
+            recognition.start();
+        }
+    </script>
+</body>
+</html>
